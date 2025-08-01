@@ -12,6 +12,8 @@ if vector size is not optimal:
 >[!note] Vectorized worse perf than Materialization
 >in theory vectorized should be at worst as good as *Operator at a time* when the vector size is too large but it can perform worse
 >could it be that it has similar *Cache-unfriendliness* when it comes to data (No cache residency) but worse when it comes to **Instruction cache** since it does more function calls?
+
+---
 # Kinds of Hash-joins
 ### simple
 build then probe and follow pointers into the build relation and compare keys (*All sequential*)
@@ -40,4 +42,15 @@ build then probe and follow pointers into the build relation and compare keys (*
 5. MMU (Physical address) -> Main Memory
 6. RAM (Data) -> CPU Chip
 >[!info] TLB stores Virtual Page Number -> Page table entry (Physical address)
- 
+
+ >[!warning] The data may not even be in the page table (in RAM) in which case *Page fault* -> fetch from disk
+
+>[!warning] the more *scattered*  your data is, the more pages you use,  the more the TLB is *thrashed*
+
+>[!success] TLBs also can have hierarchy (*which is the case in modern CPUs*) generally 2 levels 
+>and it seems that this is **One of the few uses where a fully associative cache makes sense** although, real sue case (i7) seems to have 2 levels of 4-way associative TLB
+## Huge pages
+usually inefficient because a process will most likely not end up using the entire page (2MB, 1GB) 
+**BUT** using huge pages -> using less pages -> less entries in the TLB -> less misses/ Thrashing.
+
+
