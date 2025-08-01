@@ -47,8 +47,7 @@
               "title": "paper1"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -121,7 +120,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DP on mHW/Resources/paper1.pdf",
+                "file": "DP on mHW/Array access tutorial & prefetching.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +130,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for paper1"
+              "title": "Backlinks for Array access tutorial & prefetching"
             }
           },
           {
@@ -169,13 +168,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DP on mHW/Resources/paper1.pdf",
+                "file": "DP on mHW/Array access tutorial & prefetching.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of paper1"
+              "title": "Outline of Array access tutorial & prefetching"
             }
           }
         ]
@@ -195,11 +194,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "165defffa0bdad8a",
+  "active": "f2cc2cb47b41c047",
   "lastOpenFiles": [
-    "DP on mHW/Array access tutorial & prefetching.md",
     "DP on mHW/In Memory joins.md",
     "DP on mHW/Resources/paper1.pdf",
+    "DP on mHW/Array access tutorial & prefetching.md",
     "DP on mHW/Execution Model.md",
     "DP on mHW/Main.md",
     "DP on mHW/Resources/Screenshot From 2025-07-21 12-40-16.png",
