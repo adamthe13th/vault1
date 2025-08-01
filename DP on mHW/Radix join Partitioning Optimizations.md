@@ -19,6 +19,7 @@ then we grab 1 ***BIG partition*** at a time and re-partition it again using 6 m
 #swcb
 Before flushing something to a particular Partition on a ***per-tuple basis*** 
 Use a **Software write-combine Buffer** to write out chunks at a time
+***Each Partition has a buffer to itself*** obviously smaller than the Partition
 >[!tip] Pages are now accesses at *Buffer granularity* rather than *Tuple granularity*
 >-> reduces the number of required **memory accesses** and **address translations** by a factor of B (*buffer tuple capacity*)
 
@@ -34,6 +35,15 @@ The newly written value doesn't need to be read again so its existence in cache 
 >[!success] Solution: Non temporal (*will not be re-used soon*) streaming stores
 >use SIMD instrinsic to write **an Entire Cacheline** (*as of AVX512*) directly into memory without having to cache the line first
 
+>[!danger] Streaming stores are used to write from *SWWBC* that's in cache into a *Partition* that we do not want to be pulled into cache
+
+# Exam question
+![[Screenshot From 2025-08-01 17-23-16.png]]
+>[!note] There are 2 steps -> more Radix bits -> more pages spread -> 2 levels of TLB overflowing one after the other and thrashing
+
+>[!note] Adding SWWCBs helps by writing to a *Cache resident Buffer* which avoids address translation (*also, fewer address translations due to less granularity of accesses*)
+
+->further Optimizations: fine tuning buffer/ Partition sizes + multi-pass + huge pages
 # Using huge Pages
 #hugetables
 # Numa awareness
