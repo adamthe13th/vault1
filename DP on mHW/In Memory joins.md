@@ -50,10 +50,30 @@ build then probe and follow pointers into the build relation and compare keys (*
 ## Improving cache behavior of HashJoin
 since hashing is inherently Random, the hardware prefetcher is useless
 **Options:**
-- **Software prefetcher**: the misses cannot be avoided but they can be hidden by being issued ahead of time #prefetch 
+- **Software prefetcher**: the misses cannot be avoided but they can be hidden by being issued ahead of time 
+	- #prefetch [[Array access tutorial & prefetching]]
 - **Partitioning** into cache resident buffers 
 >[!success] The benefits of cache residency offset the partitioning costs
+## Partitioned Hash join
+Paritioning into cache resident blocks using a hash function that ***ensures that partitons are matched*** improves:
+- fewer instructions per tuple
+- much fewer cache misses per tuple
+- almost No TLB misses
+>**BUT** now the *Partitioning phase is critical* and:
+> - Many partitions are far apart
+> - each one will reside in its own page
+> - run out of TLB entries (*400 ~ 500*) -> TLB thrashing
 
+>[!success] Solution
+>Either find a ***Sweet Spot*** where a block is small enough to be *cache-resident* but not too many of it to overflow the TLB
+>**OR** use *Huge tables*
+
+>[!note] increasing Radix bits
+>increasing Radix bits increases the number of partitions (*also makes them smaller*) 
+
+>[!quote] "*Partitioning is expensive beyond 2⁸ ~ 2⁹ Partitions*"
+### Partitioning histograms
+>[!quote] *Do a first pass to create histograms and then use prefix sum to know the layout of Partitions. so if the first partition contains 10 elements then the 2nd partitioning thread can only start writing at the 11-th position*
 
 
 ---

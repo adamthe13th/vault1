@@ -54,18 +54,23 @@ for(int i=0; i<N, i+=G){  //G group size
 
 
 ## Software Pipelined prefetching
-![[Normal Loop:.png]]
-translated into code:
-``` cpp
-//preprocess k-i elements of the i-th block
-//prefetch elts
-for(int j=0; j<N-kD; j++){
-	i=j+kD
-	act(A_0[i])
-}
-```
+
 >[!abstract] Software prefetching for joins : Pipelined prefetching
 > [Improving hash join performance through software prefetching (PDF)](Resources/paper1.pdf)
+
+>[!danger] Size & Prefetch Distance
+>at one time code 0 and code k of the same element are run ***kD*** iterations away
+>-> array size must be at least ***kD+1***
+
+>[!note] Comparison
+=>**Software-pipelined prefetching can always cache miss latencies BUT there is *Book-keeping* overhead**
+=> **Group prefetching is much easier to implement but it cannot hide all cache misses** i.e. when code 0 is empty, no way to hide the cache miss for visit 1 and code 1 
+> -> can still be amortized through a large group of elements
+
+comparison Chart shows that ***GP*** performs better then ***SPP*** 
+it seems to have less stalls but spends more time busy (*on book-keeping logic, I presume*) resulting in worse performance
+>[!question] could this be a best case scenario for ***GP*** considering it needs a code 0 to hide more misses?
+
 
 ---
 # Non-Temporal/ Streaming loads and stores
