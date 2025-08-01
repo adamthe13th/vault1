@@ -26,7 +26,37 @@ build then probe and follow pointers into the build relation and compare keys (*
 >data may not be local to threads
 >too many random access (*for large relations, every hash_table access will likely be a miss*)
 >Better hash function -> more random distribution of keys -> worse space locality
+## what affects these
+- **Cache/ TLB capacity**
+- **Spacial/ Temporal locality**
+>[!note] so essentially there's a hardware side and software side (*not just how optimized for locality the software is but I think some workloads are inherently random -> cannot improve locality*)
 
+>[!quote] "*.... we want to execute as many operations as possible on a cacheline, this is the data centric execution model: once you fetch something from memory, try to do as much processing with is as you can*"
+## Approaches
+| sequential                              | random                                                                                        |
+| --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| - Cluster and align data to a cacheline | - Prefetch data **Manually** the hardware prefetcher cannot predict                           |
+| - execute more Ops per cacheline        | - use *Blocking technique* to make sure data fits into cache<br>- watch out for **TLB cache** |
+## Open addressing Vs. Chain hashing
+-> ***Pointer Chasing*** vs ***Sequential access***
+**Chaining** has better performance during the build phase (*No need to look for a next free spot*)
+**LP (Linera probing)** better when probing -> no *Pointer chasing*
+>[!bug] On *High load factors* LP suffers from ***Primary Clustering***
+>*Groups of occupied slots tend to cluster together*
+
+>[!info] **Load factor**
+>*how loaded the Hash table is* = **Nbr Elements / Hash Table size**
+
+## Improving cache behavior of HashJoin
+since hashing is inherently Random, the hardware prefetcher is useless
+**Options:**
+- **Software prefetcher**: the misses cannot be avoided but they can be hidden by being issued ahead of time #prefetch 
+- **Partitioning** into cache resident buffers 
+>[!success] The benefits of cache residency offset the partitioning costs
+
+
+
+---
 # Memory translation
 #mmu 
 >[!example] Translation process: Slide 14: [InMemJoin(PDF)](InMemJoin.pdf)

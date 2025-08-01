@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DP on mHW/In Memory joins.md",
+                "file": "DP on mHW/Array access tutorial.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "In Memory joins"
+              "title": "Array access tutorial"
             }
           }
         ],
@@ -82,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "proto",
+                "query": "pref",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DP on mHW/In Memory joins.md",
+                "file": "DP on mHW/Array access tutorial.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +133,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for In Memory joins"
+              "title": "Backlinks for Array access tutorial"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DP on mHW/In Memory joins.md",
+                "file": "DP on mHW/Array access tutorial.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of In Memory joins"
+              "title": "Outline of Array access tutorial"
             }
           }
         ]
@@ -199,11 +199,15 @@
   },
   "active": "165defffa0bdad8a",
   "lastOpenFiles": [
-    "DP on mHW/Main.md",
-    "DP on mHW/Execution Model.md",
-    "DP on mHW/In Memory joins.md",
+    "DP on mHW/Resources/paper1.pdf",
+    "DP on mHW/Resources/Screenshot From 2025-07-21 12-40-16.png",
     "DP on mHW/Array access tutorial.md",
     "DP on mHW/Resources/InMemJoin.pdf",
+    "DP on mHW/Resources/Normal Loop:.png",
+    "DP on mHW/Resources/text.txt",
+    "DP on mHW/In Memory joins.md",
+    "DP on mHW/Main.md",
+    "DP on mHW/Execution Model.md",
     "Callouts help.md",
     "DP on mHW/Random.md",
     "Untitled.canvas",
@@ -230,9 +234,7 @@
     "EIST/PDFs/T05_Tutorial_Slides.pdf",
     "EIST/PDFs/T04_Tutorial_slides.pdf",
     "EIST/PDFs/L10_Exam_Preparation.pdf",
-    "EIST/PDFs/T03_Tutorial_Slides.pdf",
     "EIST/Bazel info.md",
-    "DP on mHW/Resources/Screenshot From 2025-07-21 12-40-16.png",
     "Pasted image 20250722092709.png",
     "protoEx.md"
   ]
