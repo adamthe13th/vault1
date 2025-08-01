@@ -72,9 +72,12 @@ Paritioning into cache resident blocks using a hash function that ***ensures tha
 >increasing Radix bits increases the number of partitions (*also makes them smaller*) 
 
 >[!quote] "*Partitioning is expensive beyond 2⁸ ~ 2⁹ Partitions*"
+>see later: unless using multi-pass still expensive but much better
 ### Partitioning histograms
 >[!quote] *Do a first pass to create histograms and then use prefix sum to know the layout of Partitions. so if the first partition contains 10 elements then the 2nd partitioning thread can only start writing at the 11-th position*
 
+>[!example] [[Radix join Partitioning Optimizations]]
+>Optimizations including: Multi-pass, software write-combine buffers etc.
 
 ---
 # Memory translation
