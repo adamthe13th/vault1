@@ -1,5 +1,5 @@
 >[!question] In a plot showing the Bandwidth decrease relative to Dataset size
-> Slide 2: [InMemJoin(PDF)](Resources/InMEmJoins.pdf)
+> Slide 2: [InMemJoin(PDF)](Resources/InMemJoins.pdf)
 > - can we infer the *Cache size* ? 
 > - What if all  cachelines by chance map to the same set
 > - Can we then infer an *Untereschranke* for the size of the set-associative caches?
