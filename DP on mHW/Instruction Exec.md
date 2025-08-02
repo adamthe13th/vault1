@@ -44,7 +44,7 @@ Is the branch taken or not
 >For high and Low *Predicate selectivity* good performance because guessing gains in accuracy
 >for middling selectivity, branching becomes more *random* and more difficult to predict
 #### Software
->[!tip] => we want to reduce branching:
+>[!tip] => we want to reduce branching: *Software predication*
 >"*Turn control flow into Data flow*" 
 > ` for (i=0; ... N) {count += quanitity[i]>3; }` 
 > => **Performance is independent of selectivity**
