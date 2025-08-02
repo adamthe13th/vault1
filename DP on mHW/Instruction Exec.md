@@ -94,20 +94,50 @@ Predicting the cost of a variant might be hard due to the parameters involved
 # Dynamic scheduling
 #schedule #hazard
 first check is for structural Hazards
->[!quote] *we keep in-order scheduling but out-of-order Execution*
+>[!quote] *we keep in-order issue but out-of-order Execution*
 >-> introduces Data hazards
 
+>[!warning] *Compiler re-ordering of instructions is still a type of static scheduling*
+>Compilers can re-order instructions but since this is not done at runtime *and NOT based on runtime conditions* it is still considered **static**
 ### Register renaming for Data hazards
 if a read is supposed to happen before a write and the re-ordering places the write before, we still want the read to have the original value
 -> ***Solution*** re-route the write into another register: *Register renaming*.
 >[!info] *Register renaming* happens inside the *reservation stations*
 >Also inside the *Reservation stations*, an instruction is checked 
 >- are there any Data hazards
->- are its Operands ready
+>- are its Operands ready (*keeps track of operand destination Reg*)
 >--> gets *dispatched to the functional unit*
+#### HW vs. SW techniques
 
+| Technique                  | Hardware | Compiler                   |
+| -------------------------- | -------- | -------------------------- |
+| **Out-of-Order Execution** | ✅ Yes    | ❌ No                       |
+| **Register Renaming**      | ✅ Yes    | ⚠️ Partially (with limits) |
+>[!example] *See compiler passes:* Last Problem
+>[[Exam Problems.pdf]]
+### SMT
+>[!quote] *The Tumasulo Algorithm (for out-of-Order execution) set the ground for Thread level parallelism (**Both require Virtual Registers**). surprisingly few changes needed to be made to accomodate*
+>Of course an extra fetch unit was needed for the new *instruction stream*
 
+**SMT** threads share most of their Resources: *All levels of cache and branch prediction functionality (to some extent)*
+>[!note] *"To some extent"*
+>the BTB is shared on intel but it is tagged (Thread <-> BTB entry)
+>*Pattern history table* can be shared or partitioned
+>*Return address stack*: usually duplicated
+#### Effects of sharing
++ threads can pollute each other's caches
++ But collaborative threads can use cache *Cooperatively*
+>[!success] *Cooperative cache use in SMT*
+>In *Tree-based and hash based indexes* (workloads that include a lot of *Pointer chasing*)
+>one thread could act purely as a software prefetcher while the other works (e.g. in another loop that iterates over the needed addresses (*in a circle array*))
 
+Using a helper *Prefetcher* thread also solves an issue with standard software prefetching: **The added code complexity that the threads needs to do** 
+if another SMT thread is taking care of all that compute, the instruction fetch/ decode is freed
+>[!tip] Helper prefetcher
+>Helper thread doesn't just prefetch but rather touches the data **in advance** while doing minimal work on it and obviously *Not affecting the program semantics*
 
+![[Screenshot From 2025-08-02 13-27-04.png]]
+> ***Spin-loop*** here is a way for the Helper Thread to stall to wait for the main thread to catch up. *Hurts performance if not done properly*
+> ***Work-ahead set size*** essentially the prefetching distance
 
 
