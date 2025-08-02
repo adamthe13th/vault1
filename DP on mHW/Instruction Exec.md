@@ -140,4 +140,8 @@ if another SMT thread is taking care of all that compute, the instruction fetch/
 > ***Spin-loop*** here is a way for the Helper Thread to stall to wait for the main thread to catch up. *Hurts performance if not done properly*
 > ***Work-ahead set size*** essentially the prefetching distance
 
+>[!bug] *Problem* accessing the same cache line
+>there is a high chance of both threads accessing the same cache line simultaneously 
+>CPU rasies a *Memory Order Machine Clear (MOMC)* -> flushes pipeline (**Very high penalty**)
+>*This effect is worse when the helper Thread spins to wait for 
 
