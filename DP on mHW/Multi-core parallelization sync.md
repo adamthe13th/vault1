@@ -119,11 +119,31 @@ or it can be explicit: *you tell the OS how you need the memory to be spread out
 3. preferred: *Bind if available*
 4. Interleaved
 
+>When re-gathering and merging partitioned data that was worked on by multiple NUMA nodes, it is important to do this in a *Cache- and NUMA- conscious way* 
+>*The course suggests multi-way merge (multi-level 2-way) done by a single thread in cache*
 
 
+### Radix joi on NUMA
+>[!example] *PRO vs. CPRL*
+>[NUMA and Chiplets](Resources/NUMA_chiplet.pdf)
+>To *Radix-join* NUMA awareness seems to bring 20% ~ 30% performance improvement
+
+=> Above, discusses the effect of gathering the *NUMA local hash table* then writing it in one Chunk through the interconnect rather than Random writes over the interconnect during the build phase to the *Global hash table* (The global hash table is interleaved )
+>[!warning] *Not sure if the hash table is ever aggregated but that does make more sense to me to aggregate and interleave with each NUMA node having entire blocks rather than each having a small hash table with partial chunks*
 
 
+>[!success] *Engine-wide NUMA awareness*
+>by coupling the *Morcel driven parallelization* with NUMA awareness
+>-> the Relation to be processed is **Interleaved** then worker threads are assigned to the local morcels by a scheduler
+>-> The resulting threads are stored in (NUMA) local memory (*if available*) to avoid synchronization
+>-> "*The global HT is probed by threads located on various sockets. it is interleaved to avoid contention*"
 
+![[Screenshot From 2025-08-03 14-15-53.png]]
 
+>[!tip] *NUMA pinning can be used to achieve isolation and avoid noisy neighboors*
 
+>**Further ways to achieve some kind of isolation and minimize the effect of interference** 
+>+ *Page colouring* -> Now intel CAT serves the same purpose better (*Cache Allocation Technology*)
+>+ *Memory Bandwidth Allocation* 
+>*Keep in mind that a NUMA node neighbor accessing (completely different DATA) on NUMA local memory decreases performance while a remote access has no **Significant** effect*
 
