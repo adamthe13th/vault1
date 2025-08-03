@@ -145,3 +145,8 @@ if another SMT thread is taking care of all that compute, the instruction fetch/
 >CPU rasies a *Memory Order Machine Clear (MOMC)* -> flushes pipeline (**Very high penalty**)
 >*This effect is worse when the helper Thread spins to wait for 
 
+>[!success] *Helper walks backwards* (no spin loop)
+>The solution (*which delivers better results*) seems to be to let the helper thread walk backwards
+>you need to choose:
+>- where to walk backwards from (*specially if array us too large*)
+>- what to do when the helper is about to meet main
