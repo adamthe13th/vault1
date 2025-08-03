@@ -1,3 +1,8 @@
+
+>[!info] *Oblivious algorithm* is an algorithm that is independent of a certain property of the problem (*we want these because they usually mean less branching*)
+>-> the same steps are done no matter what the input is.
+
+
 # Questions to setup note
 - [ ] DLP vs TLP
 - [ ] the point of AVX extensions is to accelerate carefuly written libraries rather than for the compiler to generate them (is that still true and why)
