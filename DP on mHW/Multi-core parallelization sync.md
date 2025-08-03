@@ -106,6 +106,22 @@ types:
 >*keep in mind a version number change can be unrelated to the elements that concern the current transaction* -> increment before leaving
 >for reads: no locking *but check version number when done*
 
+# NUMA
+#numa 
+NUMA awareness can be transparent (*the OS moves either the data or the thread around to keep thing* **NUMA local** *as part of optimizing system metrics*)
+or it can be explicit: *you tell the OS how you need the memory to be spread out* (the OS doesn't decide to migrate the data or the thread)
+>[!tip] *You can specify allocation policy on a per Task or Process basis*
+>**OR** even to a specific Range of a Task's address space
+
+## NUMA policies
+1. Local: *current NUMA node*
+2. Bind: *bind to a specified set of NUMA nodes and do not migrate*
+3. preferred: *Bind if available*
+4. Interleaved
+
+
+
+
 
 
 
