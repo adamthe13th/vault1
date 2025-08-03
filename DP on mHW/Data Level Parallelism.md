@@ -2,6 +2,7 @@
 >[!info] *Oblivious algorithm* is an algorithm that is independent of a certain property of the problem (*we want these because they usually mean less branching*)
 >-> the same steps are done no matter what the input is.
 
+>[!tip] *The Multi-way merge sort* discussed in the lecture is a *Multi-level 2 way merge* on each level we only merge 2 sorted arrays and not all k at once
 
 # Questions to setup note
 - [ ] DLP vs TLP
